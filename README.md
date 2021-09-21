@@ -44,3 +44,11 @@ yarn add react-day-picker
 # react-selectize
 https://furqanzafar.github.io/react-selectize/#/
 yarn add react-selectize
+
+# luxon
+https://moment.github.io/luxon/#/install
+yarn add luxon
+
+# react permission component
+https://www.npmjs.com/package/react-permission-component
+yarn add react-permission-component
