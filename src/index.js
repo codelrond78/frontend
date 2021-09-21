@@ -1,4 +1,5 @@
 import React from "react";
+import { ChakraProvider } from "@chakra-ui/react"
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -27,7 +28,9 @@ const providerConfig = {
 
 ReactDOM.render(
   <Auth0Provider {...providerConfig}>
-    <App />
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );
