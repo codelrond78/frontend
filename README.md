@@ -32,3 +32,15 @@ yarn add react-styleguidist --dev
 https://www.cypress.io/blog/2021/04/06/cypress-component-testing-react/
 yarn add cypress @cypress/react @cypress/webpack-dev-server --dev
 yarn add @testing-library/cypress --dev
+
+# jotai
+https://docs.pmnd.rs/jotai/introduction
+yarn add jotai
+
+# react-day-picker
+https://react-day-picker.js.org/
+yarn add react-day-picker
+
+# react-selectize
+https://furqanzafar.github.io/react-selectize/#/
+yarn add react-selectize
