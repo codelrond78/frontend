@@ -28,7 +28,7 @@ yarn add react-query
 https://react-styleguidist.js.org/
 yarn add react-styleguidist --dev
 
-# Cypress
+# Cypress (not used)
 https://www.cypress.io/blog/2021/04/06/cypress-component-testing-react/
 yarn add cypress @cypress/react @cypress/webpack-dev-server --dev
 yarn add @testing-library/cypress --dev
@@ -52,3 +52,7 @@ yarn add luxon
 # react permission component
 https://www.npmjs.com/package/react-permission-component
 yarn add react-permission-component
+
+# hookrouter
+https://github.com/Paratron/hookrouter/blob/master/src-docs/pages/en/01_overview.md
+yarn add hookrouter
