@@ -13,7 +13,7 @@ export const useAuthQuery = (name, query, variables) => {
         graphQLClient.setHeader("Authorization", `Bearer ${token}`);
         
         const data = await graphQLClient.request(query)
-        return data[name]
+        return data
     });
 }
 

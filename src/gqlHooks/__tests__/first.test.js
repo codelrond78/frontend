@@ -26,7 +26,7 @@ jest.mock("../../config", () => ({
 const C = () => {
   const { data, isLoading } = useGetSchool();
   if(isLoading) return <div></div>
-  return <div>{data.name}</div>
+  return <div>{data.school.name}</div>
 }
 
 describe("Testing first query hook", () => {
@@ -44,8 +44,8 @@ describe("Testing first query hook", () => {
   
   const { result, waitFor } = renderHook(() => useGetSchool(), { wrapper });
   await waitFor(() => result.current.isSuccess);
-  expect(result.current.data.headers.authorization).toEqual("Bearer access-token");
-  expect(result.current.data.name).toEqual("nuestra señora de la salud");
+  expect(result.current.data.school.headers.authorization).toEqual("Bearer access-token");
+  expect(result.current.data.school.name).toEqual("nuestra señora de la salud");
     })
 
   it("test component with useshool", async ()=>{
