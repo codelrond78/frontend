@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useQuery, QueryClient, QueryClientProvider} from 'react-query';
 import "@testing-library/jest-dom/extend-expect";
 import { useGetSchool } from '../authQuery'
-
+import {render, screen, waitFor} from '@testing-library/react'
 
 jest.mock("@auth0/auth0-react", () => ({
   useAuth0: jest.fn(() => ({
@@ -23,8 +23,10 @@ jest.mock("../../config", () => ({
   })),
 }));
 
-function useCustomHook() {
-    return useQuery('customHook', () => 'Hello');
+const C = () => {
+  const { data, isLoading } = useGetSchool();
+  if(isLoading) return <div></div>
+  return <div>{data.name}</div>
 }
 
 describe("Testing first query hook", () => {
@@ -40,9 +42,20 @@ describe("Testing first query hook", () => {
       </QueryClientProvider>   
     );    
   
- const { result, waitFor } = renderHook(() => useGetSchool(), { wrapper });
- await waitFor(() => result.current.isSuccess);
- expect(result.current.data.headers.authorization).toEqual("Bearer access-token");
- expect(result.current.data.name).toEqual("nuestra señora de la salud");
- })
-});
+  const { result, waitFor } = renderHook(() => useGetSchool(), { wrapper });
+  await waitFor(() => result.current.isSuccess);
+  expect(result.current.data.headers.authorization).toEqual("Bearer access-token");
+  expect(result.current.data.name).toEqual("nuestra señora de la salud");
+    })
+
+  it("test component with useshool", async ()=>{
+    const client = new QueryClient()
+    render(
+    <QueryClientProvider client={client}>
+      <C />
+    </QueryClientProvider>
+    )
+    await waitFor(() => expect(screen.getByText('nuestra señora de la salud')).toBeInTheDocument())
+  })
+
+  }) 
