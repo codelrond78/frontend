@@ -15,6 +15,7 @@ const handlers = [
     return res(
       ctx.data({
         school: {
+          headers: req.headers._headers,
           id: 0,
           name: "nuestra señora de la salud"
         },

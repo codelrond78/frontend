@@ -23,10 +23,6 @@ jest.mock("../../config", () => ({
   })),
 }));
 
-//function useCustomHook() {
-//    return useQuery('customHook', () => 'Hello'); 
-//}
-
 function useCustomHook() {
     return useQuery('customHook', () => 'Hello');
 }
@@ -46,6 +42,7 @@ describe("Testing first query hook", () => {
   
  const { result, waitFor } = renderHook(() => useGetSchool(), { wrapper });
  await waitFor(() => result.current.isSuccess);
+ expect(result.current.data.headers.authorization).toEqual("Bearer access-token");
  expect(result.current.data.name).toEqual("nuestra señora de la salud");
-  })
+ })
 });

@@ -1,19 +1,22 @@
 import { useQuery } from 'react-query';
 import { useAuth0 } from '@auth0/auth0-react';
-import { request, gql } from 'graphql-request';
+import { request, gql, GraphQLClient } from 'graphql-request';
 
 const endpoint = 'http://localhost:8080/grapqhl'
+
 
 export const useAuthQuery = (name, query, variables) => {
     return useQuery(name, async () => {
         const { getAccessTokenSilently } = useAuth0();
         const token = await getAccessTokenSilently();
+        const graphQLClient = new GraphQLClient(endpoint, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+          })
         
-        const result = await request(endpoint, query, variables, {headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-        return result[name]
+        const data = await graphQLClient.request(query)
+        return data[name]
     });
 }
 
